@@ -1,0 +1,28 @@
+{
+  "name": "houseofcards",
+  "version": "1.0.0",
+  "description": "House of cards",
+  "main": "./dist/bundle.js",
+  "scripts": {
+    "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
+    "watch:serve": "ts-node --inspect src/index.ts",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "cards"
+  ],
+  "author": "BaalKerner",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^0.12.3"
+  },
+  "devDependencies": {
+    "@types/node": "^8.5.7",
+    "nodemon": "^1.14.8",
+    "ts-loader": "^3.2.0",
+    "ts-node": "^4.1.0",
+    "typescript": "^2.6.2"
+  }
+}
