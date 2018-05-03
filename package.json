@@ -4,8 +4,8 @@
   "description": "House of cards",
   "main": "./dist/bundle.js",
   "scripts": {
-    "watch": "nodemon -e ts -w ./src -x npm run watch:serve",
-    "watch:serve": "ts-node --inspect src/index.ts",
+    "watch": "set PORT=8080 && nodemon -e ts -w ./src -x npm run watch:serve",
+    "watch:serve": "ts-node src/index.ts",
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,13 +16,17 @@
   "author": "BaalKerner",
   "license": "ISC",
   "dependencies": {
-    "graphql": "^0.12.3"
+    "express": "^4.16.2",
+    "mongoose": "^5.0.17"
   },
   "devDependencies": {
-    "@types/node": "^8.5.7",
+    "@types/express": "^4.11.1",
+    "@types/mongoose": "^5.0.11",
+    "@types/node": "^10.0.3",
     "nodemon": "^1.14.8",
-    "ts-loader": "^3.2.0",
-    "ts-node": "^4.1.0",
+    "ts-loader": "^4.2.0",
+    "ts-node": "^6.0.2",
+    "tslint": "^5.9.1",
     "typescript": "^2.6.2"
   }
 }
