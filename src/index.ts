@@ -1,12 +1,21 @@
-import * as http from 'http';
+import * as express from 'express';
 
-const PORT = 10001;
+import './db/config';
+import { CardRouter } from './route/CardRoute';
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.end('Hello World!');
+const PORT = process.env.PORT || 10001;
+
+const app = express();
+
+app.use(express.json());
+
+app.use('/card', CardRouter);
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send(`Error: ${err}`);
 });
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
