@@ -1,6 +1,6 @@
 import { Schema, model, Model, Document } from 'mongoose';
 
-interface ICard extends Document {
+export interface ICard extends Document {
   name: string;
   description: string;
 }

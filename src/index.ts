@@ -3,7 +3,7 @@ import * as express from 'express';
 import './db/config';
 import { CardRouter } from './route/CardRoute';
 
-const PORT = process.env.PORT || 10001;
+const PORT = process.env.PORT || 8081;
 
 const app = express();
 
