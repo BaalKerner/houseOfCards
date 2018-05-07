@@ -2,6 +2,7 @@ import * as express from 'express';
 
 import './db/config';
 import { CardRouter } from './route/CardRoute';
+import { PlayerRoute } from './route/PlayerRoute';
 
 const PORT = process.env.PORT || 8081;
 
@@ -10,6 +11,7 @@ const app = express();
 app.use(express.json());
 
 app.use('/card', CardRouter);
+app.use('/player', PlayerRoute);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { PlayerModel } from '../db/schema/PlayerSchema';
 
-const PlayerRoute: Router = Router();
+export const PlayerRoute: Router = Router();
 
 PlayerRoute.get('/', (req, res) => {
   PlayerModel.find()
