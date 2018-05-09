@@ -1,5 +1,7 @@
+import { forOwn } from 'lodash';
 import { Router } from 'express';
-import { CardModel } from '../db/schema/CardSchema';
+import * as csv from 'csvtojson';
+import { CardModel, ICard } from '../db/schema/CardSchema';
 
 export const CardRouter: Router = Router();
 
@@ -51,4 +53,32 @@ CardRouter.delete('/:id', (req, res, next) => {
     res.status(200).send(card);
   })
   .catch(next);
+});
+
+CardRouter.post('/import', (req: any, res, next) => {
+  const cards: ICard[] = [];
+  let i = 0;
+
+  forOwn(req.files, (file) => {
+    i += 1;
+
+    csv()
+    .fromString(file.data.toString('utf8'))
+    .on('json', (json) => {
+      cards.push(json);
+    })
+    .on('done', (err) => {
+      if (err) {
+        next(err);
+      }
+
+      i -= 1;
+
+      if (i === 0) {
+        CardModel.create(cards)
+        .then(cards => res.status(200).send(cards))
+        .catch(next);
+      }
+    });
+  });
 });
